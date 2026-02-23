@@ -4,7 +4,7 @@
             {{ __('Users') }}
         </h2>
     </x-slot>
-
+ 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -17,16 +17,18 @@
                                 <th>Registered at</th>
                             </tr>
                         </thead>
-                        {{-- TÂCHE : ajoutez ici la boucle pour afficher les utilisateurs, ou la ligne "No content" si aucun utilisateur --}}
                         <tbody>
-                            <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">No content.</td>
-                            </tr>
+                            @forelse ($users as $user)
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->created_at }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3">No content.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
